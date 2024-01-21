@@ -1,17 +1,16 @@
 {
-    "short_name": "livexstream",
-    "name": "livexstream",
-    "icons": [
-      {
-        "src": "icon/path.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-    ],
-    "start_url": "/index.html",
-    "background_color": "#FFFFFF",
-    "display": "standalone",
-    "scope": "/",
-    "theme_color": "#000000"
-  }
-  
+  "name": "livexstream",
+  "short_name": "livexstream",
+  "description": "Actualités Séries Streaming",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#000",
+  "theme_color": "#7B3FFF",
+  "icons": [
+    {
+      "src": "icon/path.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
