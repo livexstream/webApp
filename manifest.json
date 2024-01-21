@@ -2,7 +2,7 @@
   "name": "livexstream",
   "short_name": "livexstream",
   "description": "Actualités Séries Streaming",
-  "start_url": "/index.html",
+  "start_url": "/webapp/index.html",
   "display": "standalone",
   "background_color": "#000",
   "theme_color": "#7B3FFF",
