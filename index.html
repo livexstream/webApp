@@ -17,16 +17,17 @@
 <body>
   <iframe id="pdfViewer" style="display:none;"></iframe>
   <script>
-      function isMobileDevice() {
-          return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+      function isSmartphone() {
+          var maxMobileWidth = 767; // Largeur maximale pour les smartphones, à ajuster selon vos besoins
+          return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) && window.innerWidth <= maxMobileWidth;
       }
 
       function openPDF(url) {
-          if (isMobileDevice()) {
-              // Rediriger vers le fichier PDF pour les appareils mobiles
+          if (isSmartphone()) {
+              // Rediriger vers le fichier PDF pour les smartphones
               window.location.href = url;
           } else {
-              // Afficher le PDF dans un iframe pour les appareils de bureau
+              // Afficher le PDF dans un iframe pour les tablettes et appareils de bureau
               var viewer = document.getElementById('pdfViewer');
               viewer.style.display = 'block';
               viewer.src = url;
@@ -34,7 +35,7 @@
       }
 
       // Choix du fichier PDF en fonction du type d'appareil
-      if (isMobileDevice()) {
+      if (isSmartphone()) {
           openPDF('mobile.pdf');
       } else {
           openPDF('desktop.pdf');
