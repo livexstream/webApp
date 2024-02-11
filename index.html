@@ -1,53 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil - Stream Service</title>
-  <link rel="stylesheet" href="index.css">
-  <link rel="manifest" href="/webapp/manifest.json">
-  <style>
-    iframe {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accueil - Stream Service</title>
+<link rel="stylesheet" href="index.css">
+<link rel="manifest" href="/webapp/manifest.json">
+<style>
+  iframe {
       width: 100%;
-      height: 100vh;
-      /* Ajustez la hauteur selon vos besoins */
-    }
-  </style>
+      height: 100vh; /* Ajustez la hauteur selon vos besoins */
+  }
+</style>
 
 </head>
-
 <body>
   <iframe id="pdfViewer" style="display:none;"></iframe>
   <script>
-    function isSmartphone() {
-      var maxMobileWidth = 767; // Ajustez selon vos besoins
-      var isMobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-      var isNarrowScreen = window.innerWidth <= maxMobileWidth;
-      var isTablet = /iPad|Tablet|Pad/i.test(navigator.userAgent);
+      function isSmartphone() {
+          var maxMobileWidth = 767; // Ajustez selon vos besoins
+          var isMobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+          var isNarrowScreen = window.innerWidth <= maxMobileWidth;
 
-      return isMobile && isNarrowScreen && !isTablet;
-    }
-
-    function openPDF(url) {
-      if (isSmartphone()) {
-        // Rediriger vers le fichier PDF pour les smartphones
-        window.location.href = url;
-      } else {
-        // Afficher le PDF dans un iframe pour les tablettes et appareils de bureau
-        var viewer = document.getElementById('pdfViewer');
-        viewer.style.display = 'block';
-        viewer.src = url;
+          return isMobile && isNarrowScreen;
       }
-    }
 
-    // Choix du fichier PDF en fonction du type d'appareil
-    if (isSmartphone()) {
-      openPDF('mobile.pdf');
-    } else {
-      openPDF('desktop.pdf');
-    }
+      function openPDF(url) {
+          var viewer = document.getElementById('pdfViewer');
+          if (isSmartphone()) {
+              // Rediriger vers le fichier PDF pour les smartphones
+              window.location.href = url;
+          } else {
+              // Afficher le PDF dans un iframe pour les tablettes et appareils de bureau
+              viewer.style.display = 'block';
+              viewer.src = url;
+          }
+      }
+
+      // Choix du fichier PDF en fonction du type d'appareil
+      if (isSmartphone()) {
+          openPDF('mobile.pdf');
+      } else {
+          openPDF('desktop.pdf');
+      }
   </script>
 </body>
-
 </html>
