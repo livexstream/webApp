@@ -15,26 +15,29 @@
 
 </head>
 <body>
-  <iframe id="pdfViewer" src="" style="width:100%; height:100vh;"></iframe>
+  <iframe id="pdfViewer" style="display:none;"></iframe>
   <script>
       function isMobileDevice() {
           return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
       }
-  
-      function loadPDF(url) {
-          var viewer = document.getElementById('pdfViewer');
+
+      function openPDF(url) {
           if (isMobileDevice()) {
-              // Ajoutez des paramètres de zoom pour les mobiles si nécessaire
-              viewer.src = url + "#zoom=page-width";
+              // Rediriger vers le fichier PDF pour les appareils mobiles
+              window.location.href = url;
           } else {
+              // Afficher le PDF dans un iframe pour les appareils de bureau
+              var viewer = document.getElementById('pdfViewer');
+              viewer.style.display = 'block';
               viewer.src = url;
           }
       }
-  
+
+      // Choix du fichier PDF en fonction du type d'appareil
       if (isMobileDevice()) {
-          loadPDF('mobile.pdf');
+          openPDF('mobile.pdf');
       } else {
-          loadPDF('desktop.pdf');
+          openPDF('desktop.pdf');
       }
   </script>
 </body>
