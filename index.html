@@ -5,17 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Accueil - Stream Service</title>
 <link rel="stylesheet" href="index.css">
-<link rel="stylesheet" href="loader.css">
 <link rel="manifest" href="/webapp/manifest.json">
+<style>
+  iframe {
+      width: 100%;
+      height: 100vh; /* Ajustez la hauteur selon vos besoins */
+  }
+</style>
+
 </head>
 <body>
-    <div class="loader"></div>
-
+  <iframe id="pdfViewer" src=""></iframe>
     <script>
-        setTimeout(function() {
-          window.location.href = 'https://sites.google.com/view/livexstream';
-        }, 5000); // Redirige après 5 secondes
-      </script>
-    <script src="scripts.js"></script> 
+        // Fonction pour détecter un appareil mobile
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        }
+
+        // Fonction pour charger le PDF dans l'iframe
+        function loadPDF(url) {
+            document.getElementById('pdfViewer').src = url;
+        }
+
+        // Choix du fichier PDF en fonction du type d'appareil
+        if (isMobileDevice()) {
+            loadPDF('mobile.pdf');
+        } else {
+            loadPDF('desktop.pdf');
+        }
+    </script>
 </body>
 </html>
