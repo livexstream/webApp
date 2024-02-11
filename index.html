@@ -6,43 +6,37 @@
 <title>Accueil - Stream Service</title>
 <link rel="stylesheet" href="index.css">
 <link rel="manifest" href="/webapp/manifest.json">
-<style>
-  iframe {
-      width: 100%;
-      height: 100vh; /* Ajustez la hauteur selon vos besoins */
-  }
-</style>
 
 </head>
 <body>
-  <iframe id="pdfViewer" style="display:none;"></iframe>
   <script>
-      function isSmartphone() {
-          var maxMobileWidth = 767; // Ajustez selon vos besoins
-          var isMobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-          var isNarrowScreen = window.innerWidth <= maxMobileWidth;
+    function isSmartphone() {
+        var maxMobileWidth = 767; // Ajustez selon vos besoins
+        var isMobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        var isNarrowScreen = window.innerWidth <= maxMobileWidth;
 
-          return isMobile && isNarrowScreen;
-      }
+        return isMobile && isNarrowScreen;
+    }
 
-      function openPDF(url) {
-          var viewer = document.getElementById('pdfViewer');
-          if (isSmartphone()) {
-              // Rediriger vers le fichier PDF pour les smartphones
-              window.location.href = url;
-          } else {
-              // Afficher le PDF dans un iframe pour les tablettes et appareils de bureau
-              viewer.style.display = 'block';
-              viewer.src = url;
-          }
-      }
-
-      // Choix du fichier PDF en fonction du type d'appareil
-      if (isSmartphone()) {
-          openPDF('mobile.pdf');
-      } else {
-          openPDF('desktop.pdf');
-      }
-  </script>
+    if (isSmartphone()) {
+        // Intégrer le PDF pour mobile via Canva
+        document.write(`<!-- Code d'intégration Canva pour mobile -->
+<div style="position: relative; width: 100%; height: 0; padding-top: 740.7407%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+<iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+src="https://www.canva.com/design/DAF8IoLq6Mw/GINgWLoNlMVYnkMUAxYnUg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+</iframe>
+</div>
+<a href="https://www.canva.com/design/DAF8IoLq6Mw/GINgWLoNlMVYnkMUAxYnUg/view?utm_content=DAF8IoLq6Mw&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">livexstream mobile</a> par Dylan Psx`);
+    } else {
+        // Intégrer le PDF pour desktop via Canva
+        document.write(`<!-- Code d'intégration Canva pour desktop -->
+<div style="position: relative; width: 100%; height: 0; padding-top: 439.2387%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+<iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+src="https://www.canva.com/design/DAF8Ih3Skm4/VUVj5rSCcdhQSV4eaoIIpg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+</iframe>
+</div>
+<a href="https://www.canva.com/design/DAF8Ih3Skm4/VUVj5rSCcdhQSV4eaoIIpg/view?utm_content=DAF8Ih3Skm4&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">template desktop</a> par Dylan Psx`);
+    }
+</script>
 </body>
 </html>
