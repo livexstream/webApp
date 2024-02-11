@@ -1,54 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil - Stream Service</title>
-  <link rel="stylesheet" href="index.css">
-  <link rel="manifest" href="/webapp/manifest.json">
-  <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      /* Empêche le défilement autour de l'iframe */
-    }
-
-    iframe {
-      width: 100vw;
-      /* Utilise la largeur du viewport */
-      height: 100vh;
-      /* Utilise la hauteur du viewport */
-      border: none;
-      /* Supprime la bordure de l'iframe */
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accueil - Stream Service</title>
+<link rel="stylesheet" href="index.css">
+<link rel="manifest" href="/webapp/manifest.json">
+<style>
+  iframe {
+      width: 100%;
+      height: 100vh; /* Ajustez la hauteur selon vos besoins */
+  }
+</style>
 
 </head>
-
 <body>
-  <iframe id="pdfViewer" src=""></iframe>
+  <iframe id="pdfViewer" src="" style="width:100%; height:100vh;"></iframe>
   <script>
-    // Fonction pour détecter un appareil mobile
-    function isMobileDevice() {
-      return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-    }
-
-    // Fonction pour charger le PDF dans l'iframe
-    function loadPDF(url) {
-      document.getElementById('pdfViewer').src = url;
-    }
-
-    // Choix du fichier PDF en fonction du type d'appareil
-    if (isMobileDevice()) {
-      loadPDF('mobile.pdf');
-    } else {
-      loadPDF('desktop.pdf');
-    }
+      function isMobileDevice() {
+          return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+      }
+  
+      function loadPDF(url) {
+          var viewer = document.getElementById('pdfViewer');
+          if (isMobileDevice()) {
+              // Ajoutez des paramètres de zoom pour les mobiles si nécessaire
+              viewer.src = url + "#zoom=page-width";
+          } else {
+              viewer.src = url;
+          }
+      }
+  
+      if (isMobileDevice()) {
+          loadPDF('mobile.pdf');
+      } else {
+          loadPDF('desktop.pdf');
+      }
   </script>
 </body>
-
 </html>
